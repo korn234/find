@@ -112,7 +112,7 @@ export default defineConfig({
         }
       },
       allowedHosts: [
-        "devserver-main--fidfriends.netlify.app"
+        "find-r1io.onrender.com"
       ],
     },
   // Enhanced dependency optimization
