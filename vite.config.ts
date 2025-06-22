@@ -101,12 +101,12 @@ export default defineConfig({
       },
       proxy: {
         '/api': {
-          target: process.env.API_URL || 'http://localhost:10000',
+          target: process.env.API_URL || 'http://localhost:5000',
           changeOrigin: true,
           secure: true,
         },
         '/ws': {
-          target: process.env.WS_URL || 'ws://localhost:10000',
+          target: process.env.WS_URL || 'ws://localhost:5000',
           ws: true,
           changeOrigin: true,
         }
