@@ -6,6 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { compression } from 'vite-plugin-compression2';
 
 export default defineConfig({
+  base: "/",
   plugins: [
     react({
       // Optimize JSX runtime
@@ -112,7 +113,7 @@ export default defineConfig({
         }
       },
       allowedHosts: [
-        "find-wsj0.onrender.co"
+        "devserver-main--fidfriends.netlify.app"
       ],
     },
   // Enhanced dependency optimization
