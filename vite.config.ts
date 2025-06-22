@@ -111,6 +111,9 @@ export default defineConfig({
           changeOrigin: true,
         }
       },
+      allowedHosts: [
+        "devserver-main--fidfriends.netlify.app"
+      ],
     },
   // Enhanced dependency optimization
   optimizeDeps: {
