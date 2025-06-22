@@ -13,4 +13,8 @@ services:
           type: web
           name: friend-finder-app
           property: port
+      - key: API_URL
+        value: https://find-r1io.onrender.com/api
+      - key: WS_URL
+        value: wss://find-r1io.onrender.com/ws
     healthCheckPath: /api/me
