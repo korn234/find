@@ -11,7 +11,6 @@ import { setupWebSocket } from "./websocket";
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
-app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -54,22 +53,14 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
+  // Setup Vite dev middleware in development, serve static in production
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    serveStatic(app);
+    serveStatic(app); // <-- ใช้แค่ฟังก์ชันนี้พอ
   }
 
-  // Serve static frontend
-  app.use(express.static(path.join(__dirname, "../dist/public")));
-
-  // Fallback: ให้ React Router ใช้งานได้
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../dist/public/index.html"));
-  });
+  // ไม่ต้องมี express.static และ fallback ซ้ำซ้อนอีก
 
   // Use environment port or default to 5000
   const port = process.env.PORT || 5000;
