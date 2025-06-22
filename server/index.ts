@@ -64,11 +64,11 @@ app.use((req, res, next) => {
   }
 
   // Serve static frontend
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.use(express.static(path.join(__dirname, "../dist/public")));
 
   // Fallback: ให้ React Router ใช้งานได้
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../dist/public/index.html"));
   });
 
   // Use environment port or default to 5000
