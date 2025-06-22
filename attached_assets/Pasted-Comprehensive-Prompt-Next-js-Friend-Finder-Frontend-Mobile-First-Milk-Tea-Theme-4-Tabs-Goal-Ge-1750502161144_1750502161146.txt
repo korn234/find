@@ -1,0 +1,83 @@
+Comprehensive Prompt: Next.js Friend Finder Frontend (Mobile-First, Milk Tea Theme, 4 Tabs)
+Goal: Generate the complete Next.js frontend code for a friend-finding application. The frontend must be highly user-friendly, optimized for mobile (mobile-first design), and aesthetically designed with a "milk tea" color scheme using Tailwind CSS. It must seamlessly integrate with the existing Node.js/Express/Neon backend for user authentication (register/login using nickname/password, and fetching user data via JWT).
+
+Existing Setup & Constraints:
+
+Project Structure: Assume the project has a frontend/ directory with a standard Next.js (App Router, TypeScript) setup, including:
+src/app/ (for pages and layouts)
+src/components/ (for reusable components)
+tailwind.config.ts (or .js if JavaScript config is preferred)
+src/app/globals.css
+Backend API Endpoints (running on http://localhost:5000):
+POST /api/register: { nickname, age, instagram, password } -> Returns { token, user }
+POST /api/login: { nickname, password } -> Returns { token, user }
+GET /api/me: (Requires Authorization: Bearer <token> header) -> Returns { id, nickname, age, instagram }
+Authentication Flow:
+User registers/logs in, receives a JWT token.
+The token must be stored in localStorage.
+Subsequent authenticated requests to the backend (/api/me) must include this token in the Authorization: Bearer <token> header.
+Logout should remove the token from localStorage and redirect to the login page.
+Current User Data: The user object retrieved from the backend will have id, nickname, age, and instagram (optional, can be null).
+Core Requirements:
+
+Mobile-First Design & User-Friendly UI:
+
+All pages/components must be responsive and primarily designed for optimal viewing and interaction on mobile phones (e.g., iPhone 13, Android phones).
+UI elements (buttons, input fields) should be touch-friendly (sufficient size, clear hit areas).
+Overall design should be clean, modern, and intuitive for easy navigation.
+"Milk Tea" Color Scheme using Tailwind CSS:
+
+Define a custom colors palette in tailwind.config.ts with shades of beige, light brown, cream, and potentially a subtle accent color (e.g., a warm pink or darker brown). Example names: tea-milk-light, tea-milk-base, tea-milk-medium, tea-milk-dark, accent-brown, accent-pink.
+Apply these colors consistently across all components for backgrounds, text, borders, and active states.
+Ensure the overall aesthetic is warm, inviting, and consistent with the "milk tea" theme.
+Global CSS (src/app/globals.css):
+
+Set up global styles:
+Import a suitable clean font (e.g., Google Fonts 'Inter' or 'Noto Sans Thai') and apply it to html, body.
+Set the global background color to a light "milk tea" shade.
+Ensure @import rules are at the very top.
+Include basic scrollbar styling for a cleaner look.
+Implement necessary padding/margin adjustments to prevent the fixed bottom navigation bar from overlapping content.
+Layout (src/app/layout.tsx):
+
+Keep this file minimal, serving as the root layout that wraps all pages.
+It should include the html and body tags and render children. No complex styling or positioning here.
+Authentication Pages:
+
+Login Page (src/app/login/page.tsx):
+Form fields: Nickname, Password.
+"Login" button.
+Link to "Register" page.
+Display error messages clearly.
+Styling must adhere to the "milk tea" theme.
+Register Page (src/app/register/page.tsx):
+Form fields: Nickname, Age (dropdown: '12-15', '16-18', etc.), Instagram Username (optional, input field, prepend '@' if missing), Password, Confirm Password.
+"Register" button.
+Link to "Login" page.
+Handle password confirmation and basic validation (e.g., password length).
+Display error messages clearly.
+Styling must adhere to the "milk tea" theme.
+Main Application Layout & 4 Tabs (src/app/page.tsx & src/components/BottomNav.tsx):
+
+src/components/BottomNav.tsx (Fixed Bottom Navigation Bar):
+
+A standalone React component for the fixed bottom navigation bar.
+Must be fixed to the bottom-0, left-0, right-0 with a z-index to stay on top.
+Design with the "milk tea" color scheme (background, active/inactive button colors).
+Include 4 buttons/tabs:
+ปัดหา (Swipe/Match) - Icon (e.g., ❤️, ✨)
+แชท (Chat) - Icon (e.g., 💬)
+วิดีโอ (Video Call) - Icon (e.g., 🎥, 📹)
+โปรไฟล์ (Profile) - Icon (e.g., 👤, 😊)
+Buttons should clearly indicate the activeTab state with distinct styling.
+Accept activeTab and onTabChange props to manage state.
+src/app/page.tsx (Home Page / Tab Container):
+
+This page will serve as the main authenticated layout after login.
+Fetch user data (/api/me) on component mount and handle redirection to /login if not authenticated or token is invalid.
+Manage the activeTab state (e.g., using useState).
+Render the BottomNav component at the very bottom of the main layout, outside the main content div but within the root min-h-screen container.
+Render placeholder content for each of the 4 tabs based on the activeTab state. These placeholder components (SwipeTab, ChatTab, OmeTvTab, ProfileTab) should be simple divs with text indicating which tab is active.
+The ProfileTab should display the logged-in user's nickname, age, and instagram (if available), and include a "Logout" button.
+The header (Friend Finder title) should be placed at the top of the page, potentially sticky top-0 or fixed top-0.
+Ensure correct padding (pb-xx) on the main content area to prevent content overlap with the bottom navigation.
