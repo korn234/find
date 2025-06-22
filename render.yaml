@@ -3,11 +3,11 @@ services:
     name: friend-finder-app
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: npm run dev
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
     envVars:
       - key: NODE_ENV
-        value: development
+        value: production
       - key: PORT
         fromService:
           type: web
