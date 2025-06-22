@@ -112,7 +112,7 @@ export default defineConfig({
         }
       },
       allowedHosts: [
-        "find-r1io.onrender.com"
+        "find-wsj0.onrender.co"
       ],
     },
   // Enhanced dependency optimization
